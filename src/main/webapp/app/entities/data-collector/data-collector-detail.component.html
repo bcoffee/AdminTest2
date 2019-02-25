@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dataCollector">
+            <h2><span>Data Collector</span> {{dataCollector.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Ip</span></dt>
+                <dd>
+                    <span>{{dataCollector.ip}}</span>
+                </dd>
+                <dt><span>Subnet</span></dt>
+                <dd>
+                    <span>{{dataCollector.subnet}}</span>
+                </dd>
+                <dt><span>Gateway</span></dt>
+                <dd>
+                    <span>{{dataCollector.gateway}}</span>
+                </dd>
+                <dt><span>Dns</span></dt>
+                <dd>
+                    <span>{{dataCollector.dns}}</span>
+                </dd>
+                <dt><span>Plc</span></dt>
+                <dd>
+                    <div *ngIf="dataCollector.plc">
+                        <a [routerLink]="['/plc', dataCollector.plc?.id, 'view']">{{dataCollector.plc?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/data-collector', dataCollector.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{
+    "name": "DataCollector",
+    "fields": [
+        {
+            "fieldName": "ip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subnet",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gateway",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dns",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "plc",
+            "otherEntityName": "plc",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "dataCollector"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": "required",
+            "relationshipName": "devices",
+            "otherEntityName": "device",
+            "otherEntityRelationshipName": "dataCollector"
+        }
+    ],
+    "changelogDate": "20190225135444",
+    "entityTableName": "data_collector",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

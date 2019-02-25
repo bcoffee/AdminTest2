@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-baseline-heading">Create or edit a Baseline</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!baseline.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="baseline.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cycleLength">Cycle Length</label>
+                    <input type="number" class="form-control" name="cycleLength" id="field_cycleLength"
+                        [(ngModel)]="baseline.cycleLength" required/>
+                    <div [hidden]="!(editForm.controls.cycleLength?.dirty && editForm.controls.cycleLength?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.cycleLength?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cycleLength?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_minTolerance">Min Tolerance</label>
+                    <input type="number" class="form-control" name="minTolerance" id="field_minTolerance"
+                        [(ngModel)]="baseline.minTolerance" required/>
+                    <div [hidden]="!(editForm.controls.minTolerance?.dirty && editForm.controls.minTolerance?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.minTolerance?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.minTolerance?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxTolerance">Max Tolerance</label>
+                    <input type="number" class="form-control" name="maxTolerance" id="field_maxTolerance"
+                        [(ngModel)]="baseline.maxTolerance" required/>
+                    <div [hidden]="!(editForm.controls.maxTolerance?.dirty && editForm.controls.maxTolerance?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.maxTolerance?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.maxTolerance?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_minNormalTolerance">Min Normal Tolerance</label>
+                    <input type="number" class="form-control" name="minNormalTolerance" id="field_minNormalTolerance"
+                        [(ngModel)]="baseline.minNormalTolerance" required/>
+                    <div [hidden]="!(editForm.controls.minNormalTolerance?.dirty && editForm.controls.minNormalTolerance?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.minNormalTolerance?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.minNormalTolerance?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxNormalTolerance">Max Normal Tolerance</label>
+                    <input type="number" class="form-control" name="maxNormalTolerance" id="field_maxNormalTolerance"
+                        [(ngModel)]="baseline.maxNormalTolerance" required/>
+                    <div [hidden]="!(editForm.controls.maxNormalTolerance?.dirty && editForm.controls.maxNormalTolerance?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.maxNormalTolerance?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.maxNormalTolerance?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_article">Article</label>
+                    <select class="form-control" id="field_article" name="article" [(ngModel)]="baseline.article" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="articleOption.id === baseline.article?.id ? baseline.article : articleOption" *ngFor="let articleOption of articles; trackBy: trackArticleById">{{articleOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_model">Model</label>
+                    <select class="form-control" id="field_model" name="model" [(ngModel)]="baseline.model"  required>
+                        <option *ngIf="!editForm.value.model" [ngValue]="null" selected></option>
+                        <option [ngValue]="modelOption.id === baseline.model?.id ? baseline.model : modelOption" *ngFor="let modelOption of models; trackBy: trackModelById">{{modelOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.model?.dirty && editForm.controls.model?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.model?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

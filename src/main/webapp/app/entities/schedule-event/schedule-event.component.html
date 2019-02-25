@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span>Schedule Events</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-schedule-event" [routerLink]="['/schedule-event/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Schedule Event
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="scheduleEvents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Label</span></th>
+            <th><span>Start</span></th>
+            <th><span>End</span></th>
+            <th><span>Planned</span></th>
+            <th><span>Cycletime Override</span></th>
+            <th><span>Target Efficiency</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let scheduleEvent of scheduleEvents ;trackBy: trackId">
+                <td><a [routerLink]="['/schedule-event', scheduleEvent.id, 'view' ]">{{scheduleEvent.id}}</a></td>
+                <td>{{scheduleEvent.name}}</td>
+                <td>{{scheduleEvent.label}}</td>
+                <td>{{scheduleEvent.start | date:'medium'}}</td>
+                <td>{{scheduleEvent.end | date:'medium'}}</td>
+                <td>{{scheduleEvent.planned}}</td>
+                <td>{{scheduleEvent.cycletimeOverride}}</td>
+                <td>{{scheduleEvent.targetEfficiency}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/schedule-event', scheduleEvent.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/schedule-event', scheduleEvent.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'schedule-event', { outlets: { popup: scheduleEvent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
