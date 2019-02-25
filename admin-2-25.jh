@@ -1,0 +1,146 @@
+entity Customer {
+  name String required unique,
+  description String,
+  champion String,
+  note String
+}
+entity Installation {
+  name String required,
+  description String,
+  streetAddress String,
+  postalCode String,
+  city String,
+  stateProvince String,
+  timeZone String required,
+  note String
+}
+entity ScheduleEvent {
+  name String required,
+  label String,
+  start ZonedDateTime,
+  end ZonedDateTime,
+  planned Boolean,
+  cycletimeOverride Float,
+  targetEfficiency Float
+}
+entity NonProductionEvent {
+  name String required,
+  label String,
+  start ZonedDateTime,
+  end LocalDate
+}
+
+enum AttributeType {
+    STRING, INTEGER, BOOLEAN, FLOAT, DATETIME
+}
+
+enum SystemType {
+    PLANT, AREA, LINE, STATION, ASSETS, GROUP, TAG
+}
+
+entity ArticleType {
+	name String required,	
+    description String,
+    systemType SystemType required
+}
+
+entity Article {
+	name String required,	
+    description String,
+}
+
+entity MessageType {
+	code String required,
+    description String required,
+    definition String required,
+    isProductionStop Boolean required
+}
+
+entity MessageMap {
+	message String required,
+    bit Integer required,
+    isActive Boolean required,
+    ioe String required,
+    cipAddress String required
+}
+
+entity Baseline {
+	cycleLength Float required,
+    minTolerance Float required,
+    maxTolerance Float required,
+    minNormalTolerance Float required,
+    maxNormalTolerance Float required,
+}
+
+entity Model {
+	name String required,
+    priority Integer
+}
+
+entity ModelCode {
+	name String	required
+    description String	required
+}
+
+
+
+entity Attribute {
+	name String required,
+    description String,
+	type AttributeType required,
+    isSystem Boolean required,
+	nullable Boolean,
+	mutliSelect Boolean
+}
+
+entity AttributeOption {
+	name String required,
+    value String required
+}
+
+entity AttributeValue {
+	value String required
+}
+
+entity DataCollector {
+    ip String,	
+    subnet String,
+    gateway String,
+    dns String,
+}
+
+entity Plc {
+	name String,	
+    ip String,	
+    description String
+}
+
+entity Device {
+	name String,	
+    ip String,	
+}
+
+relationship OneToOne {
+	Article{parent(name)} to Article,
+	MessageType{message(message)} to MessageMap,
+	DataCollector{plc(name)} to Plc,
+	Article{type(name) required} to ArticleType
+	AttributeValue{option(name)} to AttributeOption
+}
+
+relationship OneToMany {
+	Attribute{options(name)} to AttributeOption,
+	DataCollector{devices(name) required} to Device,
+	Model{devices(name) required} to Device, 
+	Article{messageMaps(message)} to MessageMap,
+	Article{attributeValue} to AttributeValue,
+	Article{baselines} to Baseline
+}
+
+relationship ManyToOne {
+	Installation{customer(name) required} to Customer,
+	NonProductionEvent{scheduleEvent(name) required} to ScheduleEvent,
+	Baseline{model(name) required} to Model,	
+	Attribute{articleType(name) required} to ArticleType,
+	Article{installation(name) required} to Installation	
+}
