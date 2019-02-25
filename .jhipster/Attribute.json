@@ -1,0 +1,64 @@
+{
+    "name": "Attribute",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "AttributeType",
+            "fieldValues": "STRING,INTEGER,BOOLEAN,FLOAT,DATETIME",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isSystem",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nullable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "mutliSelect",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "options",
+            "otherEntityName": "attributeOption",
+            "otherEntityRelationshipName": "attribute"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "articleType",
+            "otherEntityName": "articleType",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "attribute"
+        }
+    ],
+    "changelogDate": "20190225135441",
+    "entityTableName": "attribute",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

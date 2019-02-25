@@ -5,6 +5,34 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135430_added_entity_Customer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135431_added_entity_Installation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135432_added_entity_ScheduleEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135433_added_entity_NonProductionEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135434_added_entity_ArticleType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135435_added_entity_Article.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135436_added_entity_MessageType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135437_added_entity_MessageMap.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135438_added_entity_Baseline.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135439_added_entity_Model.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135440_added_entity_ModelCode.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135441_added_entity_Attribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135442_added_entity_AttributeOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135443_added_entity_AttributeValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135444_added_entity_DataCollector.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135445_added_entity_Plc.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135446_added_entity_Device.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190225135431_added_entity_constraints_Installation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135433_added_entity_constraints_NonProductionEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135435_added_entity_constraints_Article.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135436_added_entity_constraints_MessageType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135437_added_entity_constraints_MessageMap.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135438_added_entity_constraints_Baseline.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135441_added_entity_constraints_Attribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135442_added_entity_constraints_AttributeOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135443_added_entity_constraints_AttributeValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135444_added_entity_constraints_DataCollector.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225135446_added_entity_constraints_Device.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

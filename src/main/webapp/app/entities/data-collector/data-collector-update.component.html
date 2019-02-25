@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-data-collector-heading">Create or edit a Data Collector</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!dataCollector.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="dataCollector.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ip">Ip</label>
+                    <input type="text" class="form-control" name="ip" id="field_ip"
+                        [(ngModel)]="dataCollector.ip" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_subnet">Subnet</label>
+                    <input type="text" class="form-control" name="subnet" id="field_subnet"
+                        [(ngModel)]="dataCollector.subnet" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_gateway">Gateway</label>
+                    <input type="text" class="form-control" name="gateway" id="field_gateway"
+                        [(ngModel)]="dataCollector.gateway" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dns">Dns</label>
+                    <input type="text" class="form-control" name="dns" id="field_dns"
+                        [(ngModel)]="dataCollector.dns" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_plc">Plc</label>
+                    <select class="form-control" id="field_plc" name="plc" [(ngModel)]="dataCollector.plc">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="plcOption.id === dataCollector.plc?.id ? dataCollector.plc : plcOption" *ngFor="let plcOption of plcs; trackBy: trackPlcById">{{plcOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.devices?.dirty && editForm.controls.devices?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.devices?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

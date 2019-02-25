@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-article-heading">Create or edit a Article</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!article.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="article.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="article.name" required/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="article.description" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_parent">Parent</label>
+                    <select class="form-control" id="field_parent" name="parent" [(ngModel)]="article.parent">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="articleOption.id === article.parent?.id ? article.parent : articleOption" *ngFor="let articleOption of parents; trackBy: trackArticleById">{{articleOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" [(ngModel)]="article.type" required>
+                        <option *ngIf="!editForm.value.type" [ngValue]="null" selected></option>
+                        <option [ngValue]="articleTypeOption.id === article.type?.id ? article.type : articleTypeOption" *ngFor="let articleTypeOption of types; trackBy: trackArticleTypeById">{{articleTypeOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.type?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installation">Installation</label>
+                    <select class="form-control" id="field_installation" name="installation" [(ngModel)]="article.installation"  required>
+                        <option *ngIf="!editForm.value.installation" [ngValue]="null" selected></option>
+                        <option [ngValue]="installationOption.id === article.installation?.id ? article.installation : installationOption" *ngFor="let installationOption of installations; trackBy: trackInstallationById">{{installationOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.installation?.dirty && editForm.controls.installation?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.installation?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

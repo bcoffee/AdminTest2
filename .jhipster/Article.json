@@ -1,0 +1,70 @@
+{
+    "name": "Article",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "parent",
+            "otherEntityName": "article",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "article"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "type",
+            "otherEntityName": "articleType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "article"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "messageMaps",
+            "otherEntityName": "messageMap",
+            "otherEntityRelationshipName": "article"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "attributeValue",
+            "otherEntityName": "attributeValue",
+            "otherEntityRelationshipName": "article"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "baselines",
+            "otherEntityName": "baseline",
+            "otherEntityRelationshipName": "article"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "installation",
+            "otherEntityName": "installation",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "article"
+        }
+    ],
+    "changelogDate": "20190225135435",
+    "entityTableName": "article",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

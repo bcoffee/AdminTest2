@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-message-type-heading">Create or edit a Message Type</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!messageType.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="messageType.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="messageType.code" required/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="messageType.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_definition">Definition</label>
+                    <input type="text" class="form-control" name="definition" id="field_definition"
+                        [(ngModel)]="messageType.definition" required/>
+                    <div [hidden]="!(editForm.controls.definition?.dirty && editForm.controls.definition?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.definition?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isProductionStop">Is Production Stop</label>
+                    <input type="checkbox" class="form-control" name="isProductionStop" id="field_isProductionStop"
+                        [(ngModel)]="messageType.isProductionStop" />
+                    <div [hidden]="!(editForm.controls.isProductionStop?.dirty && editForm.controls.isProductionStop?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.isProductionStop?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_message">Message</label>
+                    <select class="form-control" id="field_message" name="message" [(ngModel)]="messageType.message">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="messageMapOption.id === messageType.message?.id ? messageType.message : messageMapOption" *ngFor="let messageMapOption of messages; trackBy: trackMessageMapById">{{messageMapOption.message}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

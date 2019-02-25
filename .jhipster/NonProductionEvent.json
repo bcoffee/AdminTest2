@@ -1,0 +1,43 @@
+{
+    "name": "NonProductionEvent",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "label",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "scheduleEvent",
+            "otherEntityName": "scheduleEvent",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "nonProductionEvent"
+        }
+    ],
+    "changelogDate": "20190225135433",
+    "entityTableName": "non_production_event",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

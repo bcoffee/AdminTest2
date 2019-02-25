@@ -38,6 +38,29 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Installation.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ScheduleEvent.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.NonProductionEvent.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ArticleType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Article.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Article.class.getName() + ".messageMaps", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Article.class.getName() + ".attributeValues", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Article.class.getName() + ".baselines", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageMap.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Baseline.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Model.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Model.class.getName() + ".devices", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ModelCode.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Attribute.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Attribute.class.getName() + ".options", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.AttributeOption.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.AttributeValue.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.DataCollector.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.DataCollector.class.getName() + ".devices", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Plc.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Device.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
